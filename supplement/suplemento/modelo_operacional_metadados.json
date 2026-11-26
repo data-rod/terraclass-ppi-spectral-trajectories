@@ -1,0 +1,36 @@
+{
+  "analysis_id": "e16db346abfaae72d6bc6547edf7fcd1e5f094e1fac027e549c23956ea10562a",
+  "threshold": 0.7542582655199784,
+  "params": {
+    "categorical_features": "from_dtype",
+    "class_weight": null,
+    "early_stopping": false,
+    "interaction_cst": null,
+    "l2_regularization": 3.0,
+    "learning_rate": 0.06,
+    "loss": "log_loss",
+    "max_bins": 255,
+    "max_depth": null,
+    "max_features": 1.0,
+    "max_iter": 400,
+    "max_leaf_nodes": 15,
+    "min_samples_leaf": 30,
+    "monotonic_cst": null,
+    "n_iter_no_change": 10,
+    "random_state": 13,
+    "scoring": "loss",
+    "tol": 1e-07,
+    "validation_fraction": 0.1,
+    "verbose": 0,
+    "warm_start": false
+  },
+  "choice": {
+    "threshold": 0.7542582655199784,
+    "recall": 0.9300970873786408,
+    "precision": 0.952286282306163,
+    "predicted_positive": 503,
+    "ap": 0.9785349648543274,
+    "name": "regularized",
+    "order": 2
+  }
+}

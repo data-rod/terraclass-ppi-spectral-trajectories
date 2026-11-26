@@ -1,5 +1,5 @@
 {
-  "version": "r12-2026-11-25-editorial1",
+  "version": "r12-2026-11-26",
   "published": false,
   "release_status": "local_verification_complete; author_upload_pending",
   "completed": {
@@ -84,5 +84,21 @@
     "notebooks_reexecuted": 8,
     "reconstructed_product_routing_tested": true,
     "QGIS_relative_internal_references_verified": true
+  },
+  "supplement_distribution": {
+    "reader_archive_contains": [
+      "PDF",
+      "Excel workbooks",
+      "figures"
+    ],
+    "reader_files": 13,
+    "reproduction_command": "python reproduzir_suplemento.py --output supplementary-reading",
+    "reconstruction_from_archived_results_tested": true,
+    "refits_classifier_or_STL": false,
+    "workbooks": 4,
+    "workbook_data_rows": 61683,
+    "maximum_Excel_roundtrip_absolute_difference": 7.105427357601002e-15,
+    "numeric_comparison_relative_tolerance": 1e-14,
+    "numeric_comparison_absolute_tolerance": 1e-14
   }
 }

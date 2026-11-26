@@ -9,3 +9,5 @@ Os comandos, arquivos de ambiente e saídas estão descritos no README.md. Consu
 Os oito notebooks e suas versões HTML apresentam as etapas e os resultados. As figuras de impressão e o projeto QGIS estão em editorial_figures/. O suplemento contém a especificação dos métodos e as tabelas e componentes por banda e janela.
 
 O código segue a licença MIT; a documentação e os dados autorais seguem CC BY 4.0. Os termos dos produtos de terceiros estão em LICENSING.md.
+
+Para regenerar o PDF, as quatro planilhas Excel e as figuras do suplemento, consulte `supplement/README.md` e execute `python reproduzir_suplemento.py --output suplemento-regenerado` após instalar as dependências adicionais.

@@ -76,6 +76,19 @@ python editorial_figures/scripts/figuras_3_4_5.py
 
 Open `editorial_figures/index.html` to find PNG, SVG and PDF files. The portable QGIS project is `editorial_figures/SIG/Mapa_RBC_oficial.qgz`; its map generator runs with QGIS Python. Class colours follow Dark2: VNFP #1B9E77, VNFS #7570B3 and SIL #D95F02.
 
+## Supplementary reading files
+
+The supplementary archive contains the article supplement in PDF, a reading guide, four Excel workbooks and figures. The workbooks use descriptive Portuguese headers and include field dictionaries. Technical identifiers and the original machine-readable tables remain in `supplement/` in this code repository.
+
+To regenerate the PDF, Excel workbooks and figures from the archived supplementary results:
+
+```text
+python -m pip install -r supplement/requirements-print.txt
+python reproduzir_suplemento.py --output supplementary-reading
+```
+
+Use a new output directory. This command verifies the source tables and regenerates the reading files; it does not refit the classifier or STL models. The PDF composition uses Times New Roman on Windows. See `supplement/README.md` for the editable methods and dependencies.
+
 ## Methods and licenses
 
 `METHODOLOGY.md` defines the scientific procedure; `LABELING_PROTOCOL.md` explains the human reference and optional annotation panel. The 58 evaluation-only judgments remain outside development. Temporal metrics use the originally observed dates; endpoint shading is a visual indication.

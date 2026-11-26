@@ -5,7 +5,7 @@ title: Reflectance trajectories of pixels selected by the Pixel Purity Index acr
   software
 type: software
 license: MIT
-version: r12-2026-11-25-editorial1
+version: r12-2026-11-26
 abstract: Code for grouped binary classification, PPI representative selection and
   robust STL analysis of three TerraClass forest classes.
 authors:
@@ -25,3 +25,5 @@ authors:
   given-names: Erison Carlos dos Santos
 - family-names: Amaral
   given-names: Silvana
+
+url: https://github.com/data-rod/terraclass-ppi-spectral-trajectories
