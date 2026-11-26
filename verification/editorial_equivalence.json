@@ -1,0 +1,62 @@
+{
+  "verified": true,
+  "scientific_modules": [
+    {
+      "file": "nucleo.py",
+      "executable_AST_unchanged": true,
+      "normalization": "Ignore documentation strings and diagnostic exception wording only"
+    },
+    {
+      "file": "analise.py",
+      "executable_AST_unchanged": true,
+      "normalization": "Ignore documentation strings and diagnostic exception wording only"
+    },
+    {
+      "file": "modelagem_nucleo.py",
+      "executable_AST_unchanged": true,
+      "normalization": "Ignore documentation strings and diagnostic exception wording only"
+    },
+    {
+      "file": "reproducao_modelagem.py",
+      "executable_AST_unchanged": true,
+      "normalization": "Ignore documentation strings and diagnostic exception wording only"
+    },
+    {
+      "file": "ppi.py",
+      "executable_AST_unchanged": true,
+      "normalization": "Ignore documentation strings and diagnostic exception wording only"
+    },
+    {
+      "file": "ppi_paralelo.py",
+      "executable_AST_unchanged": true,
+      "normalization": "Ignore documentation strings and diagnostic exception wording only"
+    },
+    {
+      "file": "dados.py",
+      "executable_AST_unchanged": true,
+      "normalization": "Ignore documentation strings and diagnostic exception wording only"
+    },
+    {
+      "file": "offline.py",
+      "executable_AST_unchanged": true,
+      "normalization": "Ignore documentation strings and diagnostic exception wording only"
+    },
+    {
+      "file": "produtos.py",
+      "executable_AST_unchanged": true,
+      "normalization": "Ignore documentation strings and diagnostic exception wording only"
+    },
+    {
+      "file": "verificar_sincronizacao.py",
+      "executable_AST_unchanged": true,
+      "normalization": "Ignore documentation strings and diagnostic exception wording only"
+    },
+    {
+      "file": "vigente.py",
+      "executable_AST_unchanged": true,
+      "normalization": "Ignore documentation strings and diagnostic exception wording only"
+    }
+  ],
+  "method_and_parameters_changed": false,
+  "manuscript_edited": false
+}

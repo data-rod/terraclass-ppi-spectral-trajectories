@@ -1,0 +1,7 @@
+{
+  "change": "The products command now calls the current reconstructed-product generator.",
+  "unchanged": "Scientific executable functions are unchanged after documentation edits; see editorial_equivalence.json. The products dispatcher uses the tested current generator.",
+  "tested": true,
+  "complete_run_dispatcher_sha256": "25be7750f75f62c9c1482470284f862e262916a642239b35ed18b983300fde1a",
+  "distributed_dispatcher_sha256": "93560daee6e481900e3a20be337e19c03e536a29b4cbdd844cf11778d1da7349"
+}

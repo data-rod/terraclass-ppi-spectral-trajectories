@@ -1,0 +1,58 @@
+{
+  "basin": "722936",
+  "tiles": [
+    "029010",
+    "030010"
+  ],
+  "classes": {
+    "1": "VNFP",
+    "2": "VNFS",
+    "9": "Silvicultura"
+  },
+  "years": [
+    2016,
+    2018,
+    2020,
+    2022,
+    2024
+  ],
+  "catalog": "data/interim/stac/s2_16d_items.parquet",
+  "terra": "data/raw/terraclass/amazonia",
+  "seeds": [
+    13,
+    29,
+    47
+  ],
+  "projections": 10000,
+  "min_pixels": 101,
+  "pfa": 0.0001,
+  "scale": 0.0001,
+  "scl_excluded": [
+    0,
+    1,
+    2,
+    3,
+    8,
+    9,
+    10,
+    11
+  ],
+  "windows": [
+    7,
+    9,
+    11,
+    13,
+    15,
+    21,
+    25,
+    31,
+    35
+  ],
+  "stl": {
+    "period": 23,
+    "seasonal": 7,
+    "trend": 45,
+    "low_pass": 25,
+    "robust": true
+  }
+}

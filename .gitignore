@@ -1,0 +1,8 @@
+work/
+rebuilt*/
+*.zip
+.venv/
+__pycache__/
+.ipynb_checkpoints/
+.full-env/
+generated/

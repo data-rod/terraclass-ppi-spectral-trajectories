@@ -1,0 +1,27 @@
+cff-version: 1.2.0
+message: Cite the version of this research software used in your analysis.
+title: Reflectance trajectories of pixels selected by the Pixel Purity Index across
+  TerraClass Amazon forest classes in a basin in western Maranhão, Brazil — supporting
+  software
+type: software
+license: MIT
+version: r12-2026-11-25-editorial1
+abstract: Code for grouped binary classification, PPI representative selection and
+  robust STL analysis of three TerraClass forest classes.
+authors:
+- family-names: Brito Neto
+  given-names: Rodrigo Lacerda
+- family-names: Giancola
+  given-names: Débora Tomiatti
+- family-names: Teodoro
+  given-names: Mayara
+- family-names: Sacramento
+  given-names: Bruna Henrique
+- family-names: da Silva
+  given-names: Jadson Queiroz
+- family-names: dos Anjos
+  given-names: Abner Ernâni
+- family-names: Monteiro
+  given-names: Erison Carlos dos Santos
+- family-names: Amaral
+  given-names: Silvana

@@ -1,0 +1,16 @@
+{
+  "verified": true,
+  "model": "e16db346abfaae72d6bc6547edf7fcd1e5f094e1fac027e549c23956ea10562a",
+  "input_representatives_sha256": "a53c4817848d7ebb93fdd656db35a54b7b24bdea94cbeba5f019cce750e03fed",
+  "tables_compared": [
+    "dominios.csv",
+    "sensibilidade_componentes.csv",
+    "tabela_1.csv",
+    "tabela_2.csv"
+  ],
+  "tolerance": 1e-08,
+  "predictions_recomputed": true,
+  "accepted_candidates": 56475,
+  "representatives": 519,
+  "figure_input_origin": "reconstructed representatives, predictions and STL diagnostics"
+}

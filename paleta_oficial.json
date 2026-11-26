@@ -1,0 +1,15 @@
+{
+  "palette": "ColorBrewer Dark2",
+  "status": "official_for_RBC_project",
+  "approved_date": "2026-11-25",
+  "classes": [
+    {"code": 1, "name": "VNFP", "color": "#1B9E77", "marker": "o", "qgis_marker": "circle"},
+    {"code": 2, "name": "VNFS", "color": "#7570B3", "marker": "s", "qgis_marker": "square"},
+    {"code": 9, "name": "SIL", "color": "#D95F02", "marker": "^", "qgis_marker": "triangle"}
+  ],
+  "print_dpi": 600,
+  "point_outline_mm": 0.24,
+  "point_outline_color": "#FFFFFF",
+  "reference": "Harrower, M.; Brewer, C. A. (2003). The Cartographic Journal, 40(1), 27-37. doi:10.1179/000870403235002042",
+  "note": "Paleta adotada pelo autor para este estudo; nao e a paleta institucional do TerraClass."
+}

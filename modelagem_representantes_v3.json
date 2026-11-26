@@ -1,0 +1,22 @@
+{
+  "protocol": "representative-selection-v3",
+  "seed": 13,
+  "outer_folds": 5,
+  "inner_folds": 4,
+  "representative_precision_goal": 0.95,
+  "inner_candidate_precision_goal": 0.95,
+  "inner_min_predicted_positive": 30,
+  "threshold_rule": "maximum_recall_at_candidate_precision_goal_then_precision_then_higher_threshold",
+  "model_rule": "maximum_inner_recall_then_precision_then_AP_then_config_order",
+  "selection_rule": "highest_PPI_among_accepted_then_lowest_canonical_pixel",
+  "group": "classe:date",
+  "parameters_to_compare": [
+    {"name": "reference", "max_leaf_nodes": 31, "min_samples_leaf": 20, "l2_regularization": 1.0},
+    {"name": "moderate", "max_leaf_nodes": 15, "min_samples_leaf": 20, "l2_regularization": 1.0},
+    {"name": "regularized", "max_leaf_nodes": 15, "min_samples_leaf": 30, "l2_regularization": 3.0},
+    {"name": "compact", "max_leaf_nodes": 7, "min_samples_leaf": 40, "l2_regularization": 5.0}
+  ],
+  "immutable_parameters": {"early_stopping": false, "random_state": 13, "learning_rate": 0.06, "max_iter": 400},
+  "outer_labels_are_not_training_inputs": true,
+  "original_model_and_results_are_preserved": true
+}
