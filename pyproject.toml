@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "terraclass-ppi"
+version = "1.0.0"
+description = "PPI representative selection and spectral-temporal comparison of TerraClass forest classes"
+requires-python = ">=3.11"
+license = {text = "MIT"}
+dynamic = ["dependencies"]
+
+[tool.setuptools.dynamic]
+dependencies = {file = ["requirements.txt"]}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+terraclass_ppi = ["templates/*.html"]
+
+[tool.setuptools.data-files]
+"share/terraclass_ppi/config" = ["config/*.json"]
+"share/terraclass_ppi/docs/supplement" = ["docs/supplement/*"]

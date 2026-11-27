@@ -1,96 +1,76 @@
-# Forest reflectance trajectories in the Maranhão Amazon
+# TerraClass PPI spectral trajectories
 
-This repository contains the code for selecting forest reflectance observations with the Pixel Purity Index (PPI) and analysing their temporal variation in ottobasin 722936, western Maranhão, Brazil. The three TerraClass classes are primary natural forest vegetation (VNFP), secondary natural forest vegetation (VNFS) and silviculture (SIL). Each observation contains ten reflectances from one selected pixel. Its location can change between dates.
+This software reproduces the selection and comparison of moving spectral extremes in ottobasin 722936, western Maranhão, Brazil. It compares primary natural forest vegetation (VNFP), secondary natural forest vegetation (VNFS) and silviculture (SIL) from 2017 to 2024. The primary analysis has 519 representatives, 30 spectral series and nine seasonal windows.
 
-The analysis first transforms the spectra by Minimum Noise Fraction (MNF), identifies PPI candidates and classifies their spectral compatibility with photosynthetically active vegetation. The accepted candidate with the highest PPI supplies the observation. Seasonal-Trend decomposition using LOESS (STL) describes the resulting series.
+## Read the supporting material
 
-## Data and environment
+The accompanying Zenodo deposit supplies the supplementary PDF and four Excel workbooks individually. Start with `Material_Suplementar_RBC.pdf`. The workbooks cover selection and evaluation, representative spectra, seasonal and trend strengths, and temporal components. `figuras_e_atlas.zip` contains print figures and the nine-window atlas.
 
-Run commands from this directory. Extract the reference archive here to populate `work/` for the quick route. Add the offline-input archive for complete reconstruction and the notebooks that inspect thematic windows and observation arrays. The reference contains candidates, human labels, the model and temporal results. The offline inputs contain the thematic windows and observation arrays. `DATA_FORMATS.md` explains their fields and identifiers.
+Supporting data record: [10.5281/zenodo.24546365](https://doi.org/10.5281/zenodo.24546365). This repository contains supporting software; the manuscript is distributed separately by its authors.
 
-Use Python 3.13 in a separate environment. Install `requirements-win.lock` on Windows or `requirements-linux.lock` on Linux. Exact MNF–PPI reconstruction additionally requires NumPy 2.1.3 linked to Intel MKL 2023.1. The runtime backend check prevents an incompatible reconstruction.
+## Install
 
-For model fitting and STL on Windows, create a virtual environment and install the locked packages:
+Use Python 3.13 and the pinned packages in `requirements.txt`. The commands below use PowerShell, from the extracted code directory.
 
-```text
+```powershell
 python -m venv .venv
-.venv\Scripts\activate
-python -m pip install -r requirements-win.lock
+.venv/Scripts/Activate.ps1
+python -m pip install -r requirements.txt
+python -m pip install -e . --no-deps
 ```
 
-For complete MNF–PPI reconstruction, create a separate Conda environment with the native builds:
+The pip environment supports the model and temporal routes from archived candidates. Complete MNF–PPI reconstruction requires **NumPy 2.1.3 linked to Intel MKL 2023.1**, as specified in `environments/mnf-ppi.yml` and the Windows native lock. The backend check rejects other numerical builds for that route. `docs/REPRODUCTION.md` explains the distinction.
 
-```text
-conda create -p .full-env --file environment-native-win.explicit
-conda activate ./.full-env
-python -m pip install -r requirements-win.lock
+## Prepare data
+
+Extract `dados_derivados_e_modelos.zip` into a separate directory, such as `../dataset`. It must contain `data/` and `models/` directly. Set the data and output roots explicitly:
+
+```powershell
+$env:RBC_DATA_ROOT = (Resolve-Path ../dataset).Path
+$env:RBC_OUTPUT_ROOT = Join-Path (Get-Location) outputs
+python scripts/prepare_inputs.py --data-root $env:RBC_DATA_ROOT
 ```
 
-Retain the Conda NumPy/SciPy builds when installing the remaining packages. `environment-full-mkl.yml` lists the native constraints. `RELEASE_STATUS.json` records the Windows environments and completed checks. Linux dependencies are supplied, but execution on Linux has not been tested.
+Preparation creates an isolated working view under `outputs/reference/`. It uses local hard links where supported, with a copy fallback. Calculation outputs stay outside the canonical dataset. Historical execution filenames occur only in this local working view so the verified calculations retain their input contracts. All public candidate data are stored once, in three consolidated Parquets.
 
-## Reproduction routes
+## Reproduce
 
-The quick route recalculates STL components and metrics from the selected representatives:
+```powershell
+# Recalculate components and strengths from archived representatives, all three seeds.
+python scripts/run_pipeline.py quick --data-root $env:RBC_DATA_ROOT --all-seeds
 
-```text
-python vigente.py quick --work work
+# Refit model selection, grouped external evaluation and the operational classifier.
+python scripts/run_pipeline.py model --data-root $env:RBC_DATA_ROOT --output-dir outputs/model
+
+# Regenerate the print figures and reader supplement from the canonical tables.
+python scripts/build_figures.py --output outputs/figures
+python -m pip install -r environments/requirements-print.txt
+python scripts/build_supplement.py --data-root $env:RBC_DATA_ROOT --output outputs/supplement
 ```
 
-Add `--all-seeds` to verify the supplementary seeds 29 and 47 as well as primary seed 13. The nine seasonal windows are applied to seed 13; supplementary seeds use window 7.
+Use a new output directory for each model or complete run. For complete reconstruction, first activate the MKL environment and import the unchanged offline archive:
 
-To reproduce grouped model selection, external evaluation and the operational classifier from the archived candidates and human labels:
-
-```text
-python vigente.py model --work work --output-dir rebuilt-model
+```powershell
+python scripts/prepare_inputs.py --data-root $env:RBC_DATA_ROOT --offline-zip ../rbc-offline-inputs.zip
+python scripts/run_pipeline.py complete --data-root $env:RBC_DATA_ROOT --output-dir outputs/complete
 ```
 
-The complete route also reconstructs thematic masks and MNF–PPI candidates. Run it in the compatible MKL environment:
+Set `$env:RBC_PPI_WORKERS = "1"` before the complete command to process one date at a time and reduce concurrent memory use. The numerical functions and their two-thread BLAS limit remain the same. An interrupted run can reuse its completed checkpoints when the recorded inputs, code and environment match.
 
-```text
-python vigente.py complete --work work --output-dir rebuilt-complete
-```
+Temporary candidate partitions serve as local checkpoints during reconstruction. The consolidated published candidates are read by logical class/date group. No worker appends to a shared Parquet. Reproduction receipts include code, inputs and environment; checkpoints from another code or data state must use a new output directory.
 
-Keep regenerated outputs separate from reference inputs. Modeling and PPI stages use checkpoints; retain their input receipts when resuming. The verification report distinguishes completed model evaluation from complete spatial and PPI reconstruction.
+The eight source notebooks explain and check each stage. Import the offline data and build the figures first. Notebook 01 also displays `outputs/figures/figura_1_mapa.svg`: extract it from `figuras_e_atlas.zip`, or regenerate it through QGIS as described below. Then run `python scripts/run_notebooks.py --data-root $env:RBC_DATA_ROOT`. Executed notebooks, HTML and their execution record remain under `outputs/notebooks/`. Use a fresh output folder after changing the data or environment.
 
-## Products from reconstructed outputs
+## Map and human judgments
 
-After the model or complete route, regenerate diagnostics, tables and print figures:
+Open `qgis/study_area.qgz` in QGIS 3.44. Its small cartographic inputs and styles accompany the project. `qgis/build_map.py` regenerates Figure 1 with the shared Dark2 palette. Run it using QGIS Python; see `qgis/README.md`.
 
-```text
-python vigente.py products --work rebuilt-complete --source-work work --output-dir rebuilt-products
-```
+`python scripts/build_labeling_panel.py --data-root $env:RBC_DATA_ROOT` regenerates the offline C/NC panel after offline inputs are imported. Export judgments before moving the page. The published development and evaluation judgments are already in the data archive. New annotations are separate inputs and do not change the published model automatically.
 
-Use `rebuilt-model` instead of `rebuilt-complete` when starting from the model-only reproduction. The command recomputes held-out predictions and accepted-candidate counts, uses the shared STL function for 270 fits, compares the resulting tables with the reference, and passes the reconstructed data to the print-figure generator. Its output directory must be new. Set `RBC_PRODUCTS_DIR` to this directory to inspect these results in notebooks 06 and 07.
+## Documentation, license and funding
 
-## Notebooks and figures
+`docs/METHODOLOGY.md` describes the method; `docs/DATA_FORMATS.md` defines the inputs and tables; `docs/LABELING_PROTOCOL.md` describes the human reference. Original supplementary methods are editable in `docs/supplement/methods.docx`.
 
-Start with notebook 00 to choose an environment and reproduction route. Notebooks 01–04 examine the spatial inputs, quality records, candidates and grouped evaluation. Notebook 05 recalculates STL; notebooks 06–07 compare seasonal windows and generate figures. Executed copies and HTML are in `executed/`.
+Code: MIT. Applicable original documentation and data: CC BY 4.0. TerraClass inputs and derivative masks: CC BY-SA 4.0. Sentinel, BDC, ANA and IBGE source materials retain their terms; see `LICENSING.md` and `LICENSE-DATA`.
 
-The complete notebooks require both data archives. The command-line quick route requires only the reference archive. Model fitting and PPI reconstruction are run through the explicit terminal commands above; the notebooks inspect their outputs.
-
-Regenerate print figures from the supplied tables:
-
-```text
-python editorial_figures/scripts/figuras_3_4_5.py
-```
-
-Open `editorial_figures/index.html` to find PNG, SVG and PDF files. The portable QGIS project is `editorial_figures/SIG/Mapa_RBC_oficial.qgz`; its map generator runs with QGIS Python. Class colours follow Dark2: VNFP #1B9E77, VNFS #7570B3 and SIL #D95F02.
-
-## Supplementary reading files
-
-The supplementary archive contains the article supplement in PDF, a reading guide, four Excel workbooks and figures. The workbooks use descriptive Portuguese headers and include field dictionaries. Technical identifiers and the original machine-readable tables remain in `supplement/` in this code repository.
-
-To regenerate the PDF, Excel workbooks and figures from the archived supplementary results:
-
-```text
-python -m pip install -r supplement/requirements-print.txt
-python reproduzir_suplemento.py --output supplementary-reading
-```
-
-Use a new output directory. This command verifies the source tables and regenerates the reading files; it does not refit the classifier or STL models. The PDF composition uses Times New Roman on Windows. See `supplement/README.md` for the editable methods and dependencies.
-
-## Methods and licenses
-
-`METHODOLOGY.md` defines the scientific procedure; `LABELING_PROTOCOL.md` explains the human reference and optional annotation panel. The 58 evaluation-only judgments remain outside development. Temporal metrics use the originally observed dates; endpoint shading is a visual indication.
-
-Software is licensed under MIT. Original study documentation and author-created data are licensed under CC BY 4.0. Source products retain their applicable terms; see `LICENSING.md`. `CITATION.cff` identifies the software version and authors.
+Funding: Conselho Nacional de Desenvolvimento Científico e Tecnológico (CNPq), Projeto Geotec, grant **400048/2026-4**. Cite the software authors in `CITATION.cff` and the data record version used.

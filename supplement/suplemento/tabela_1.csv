@@ -1,4 +1,0 @@
-classe,name,pixels,candidates,training,positive,negative,accepted,representatives,external_compatible
-1,VNFP,559153,64384,799,176,623,16273,173,173
-2,VNFS,573001,56483,819,161,658,16819,173,164
-9,SIL,516396,92780,804,178,626,23383,173,165

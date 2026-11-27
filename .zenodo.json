@@ -1,0 +1,55 @@
+{
+  "title": "Reflectance trajectories of pixels selected by the Pixel Purity Index across TerraClass Amazon forest classes in a basin in western Maranhão, Brazil — supporting software",
+  "upload_type": "software",
+  "version": "1.0.0",
+  "license": "MIT",
+  "creators": [
+    {
+      "name": "Brito Neto, Rodrigo Lacerda",
+      "affiliation": "Instituto Nacional de Pesquisas Espaciais (INPE)"
+    },
+    {
+      "name": "Giancola, Débora Tomiatti",
+      "affiliation": "Instituto Nacional de Pesquisas Espaciais (INPE)"
+    },
+    {
+      "name": "Teodoro, Mayara",
+      "affiliation": "Instituto Nacional de Pesquisas Espaciais (INPE)"
+    },
+    {
+      "name": "Sacramento, Bruna Henrique",
+      "affiliation": "Instituto Nacional de Pesquisas Espaciais (INPE)"
+    },
+    {
+      "name": "da Silva, Jadson Queiroz",
+      "affiliation": "Instituto Nacional de Pesquisas Espaciais (INPE)"
+    },
+    {
+      "name": "dos Anjos, Abner Ernâni",
+      "affiliation": "Instituto Nacional de Pesquisas Espaciais (INPE)"
+    },
+    {
+      "name": "Monteiro, Erison Carlos dos Santos",
+      "affiliation": "Instituto Nacional de Pesquisas Espaciais (INPE)"
+    },
+    {
+      "name": "Amaral, Silvana",
+      "affiliation": "Instituto Nacional de Pesquisas Espaciais (INPE)"
+    }
+  ],
+  "description": "Python software for grouped evaluation of PPI representatives and robust STL comparison across three TerraClass forest classes and nine seasonal windows.",
+  "keywords": [
+    "TerraClass",
+    "Pixel Purity Index",
+    "Sentinel-2",
+    "STL"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/data-rod/terraclass-ppi-spectral-trajectories",
+      "relation": "isIdenticalTo",
+      "scheme": "url"
+    }
+  ],
+  "notes": "Funding: CNPq, Projeto Geotec, grant 400048/2026-4. Supporting dataset identifier: 10.5281/zenodo.24546365."
+}

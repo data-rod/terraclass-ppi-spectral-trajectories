@@ -1,0 +1,4 @@
+# Additional dependencies for supplement PDF assembly and print-bundle checks.
+reportlab==4.4.5
+pypdf==6.4.0
+XlsxWriter==3.2.9
